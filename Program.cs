@@ -126,7 +126,8 @@ namespace OOP_Lab3_Classes
             Console.WriteLine($"[Character] конструктор с аргументами: '{Name}' (HP: {Health})");
         }
 
-        // Не virtual: в наследнике его можно только скрыть через new
+        // Обычный метод (без virtual). 
+        // В отличие от виртуальных методов, этот нельзя переопределить, его можно только скрыть (new).
         public void Attack()
         {
             Console.WriteLine($"{Name} наносит базовый удар.");
@@ -238,8 +239,7 @@ namespace OOP_Lab3_Classes
     // демострация работы
     internal class Program
     {
-        // NoInlining + отдельный метод: после возврата из него локальных ссылок
-        // не остаётся, и GC.Collect() в Main реально соберёт объекты (в т.ч. в Debug).
+        // Отдельный метод, чтобы локальные ссылки исчезли после выхода из него
         [MethodImpl(MethodImplOptions.NoInlining)]
         static void RunDemo()
         {
